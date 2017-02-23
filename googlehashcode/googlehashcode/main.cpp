@@ -25,19 +25,46 @@ struct latency {
 
 typedef long long ll;
 const int MAX_C = 500000;
+const int MAX_SERVER = 1e4;
 const int MAX_V = 1e4;
-int dp[MAX_C];
+int dp[MAX_C+1][MAX_V];
 int v, e, r, c, x;
 int video_size[MAX_V]; //
 vector<latency> latencys;
 vector<request> requests;
+vector<int> result[MAX_SERVER];
 
 
 void solve(){
     for (int i = 0; i < latencys.size(); i++) {
         cout << latencys[i].data_center_latency << endl;
     }
+    
 }
+
+int requestValue(int vid, int cid){
+    return 0;
+}
+
+void fillCache(int cache_id){
+    for (int i = 1 ; i < x + 1; i++){
+        for (int j = 1; j < v + 1; j++) {
+            dp[i][j] = max(dp[i][j-1], dp[i-video_size[j-1]][j-1] + requestValue(j-1, cache_id));
+        }
+    }
+    
+    // backtrace
+    int t = dp[x][v];
+    int i = x, j = v;
+    while (t > 0 && i > 0 && j > 0) {
+        if (t == dp[i-video_size[j-1]][j-1] - requestValue(j, cache_id)) {
+            result[cache_id].push_back(j);
+            i = i-video_size[j-1];
+        }
+        j--;
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     // insert code here...

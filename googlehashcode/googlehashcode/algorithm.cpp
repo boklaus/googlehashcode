@@ -9,7 +9,7 @@ class Algorithm {
 
   public Algorithm(array cacheServers){cacheServers = cacheServers}
 
-  public function getHighestScoreCacheServer(int currentRequestLd, int numberOfRequest, array currentRequestLc)
+  public function getHighestScoreCacheServer(int eid, int number, vector<latency> latencys)
   {
     int cacheId = 0;
     int i=0;
@@ -17,7 +17,7 @@ class Algorithm {
     
     for( i=0; i <= sizeof(cacheServers); i++)
     {
-        value = (currentRequestLd - currentRequestLc[i])*numberOfRequest;
+        value = (latencys.eid.ee.data_center_latency - latencys.e.et)*number;
         
         if(value > maxValue){
             cacheId = i;

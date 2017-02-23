@@ -33,6 +33,12 @@ vector<latency> latencys;
 vector<request> requests;
 
 
+void solve(){
+    for (int i = 0; i < latencys.size(); i++) {
+        cout << latencys[i].data_center_latency << endl;
+    }
+}
+
 int main(int argc, const char * argv[]) {
     // insert code here...
     std::cout << "Hello, World!\n";
@@ -61,8 +67,8 @@ int main(int argc, const char * argv[]) {
         rd.number = tr;
         rd.v = vid;
         rd.e = eid;
+        requests.push_back(rd);
     }
-    requests.push_back(rd);
-    
+    solve();
     return 0;
 }
